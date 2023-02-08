@@ -1,0 +1,33 @@
+.searchPage {
+  display: flex;   
+  padding: 20px;
+  min-height: 100vh;
+  width: 100%;
+  background-color: white;
+}
+.searchPage .section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.searchPage .section .header
+{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.searchPage .title
+{
+  margin: 32px 0px;
+  font-size: 24px;
+  font-weight: 700;
+}
+.searchPage .section .cards
+{
+  margin:10px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
