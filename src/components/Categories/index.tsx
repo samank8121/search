@@ -2,16 +2,16 @@ import React, { FC, useEffect, useState } from 'react';
 import clsx from 'clsx';
 
 export interface Props {
-  filters: string[];
-  onClick: (filter: string) => void;
+  categories: string[];
+  onClick: (category: string) => void;
 }
 
-export const Filters: FC<Props> = ({ filters, onClick }) => {
+export const Categories: FC<Props> = ({ categories, onClick }) => {
   const [active, setActive] = useState('');
 
   useEffect(() => {
-    if (filters && filters.length > 0) setActive(filters[0]);
-  }, [filters]);
+    if (categories && categories.length > 0) setActive(categories[0]);
+  }, [categories]);
 
   const filterClicked = (filter: string) => {
     setActive(filter);
@@ -20,7 +20,7 @@ export const Filters: FC<Props> = ({ filters, onClick }) => {
 
   return (
     <div className='filter-component'>
-      {filters.map((f) => {
+      {categories.map((f) => {
         return (
           <div
             key={f}

@@ -2,12 +2,12 @@ import { SearchComponent } from '@/components/SearchComponent';
 import React from 'react';
 import styles from '@/styles/Search.module.css';
 import Image from 'next/image';
-import { Filters } from '@/components/Filters';
+import { Categories } from '@/components/Categories';
 import { GetStaticPropsContext } from 'next';
 import { ProductType } from '@/types/ProductType';
 import { Card } from '@/components/Card';
 
-const filters = ['Trendy foods', 'Bread', 'Milk', 'Egg'];
+const categories = ['Trendy foods', 'Bread', 'Milk', 'Egg'];
 
 interface Props {
   products: ProductType[];
@@ -15,7 +15,10 @@ interface Props {
 const Search: React.FC<Props> = ({ products }) => {
   // Hooks
 
-  const onClick = (searchCriteria: string) => {
+  const onClickCategories = (category: string) => {
+    //Call Api
+  };
+  const onClickSearch = (searchCriteria: string) => {
     //Call Api
   };
 
@@ -31,12 +34,12 @@ const Search: React.FC<Props> = ({ products }) => {
               height={14}
               priority
             />
-            <SearchComponent />
+            <SearchComponent onClick={onClickSearch} />
           </div>
           <label className={styles.title}>
             Find your favorite product now.
           </label>
-          <Filters filters={filters} onClick={onClick} />
+          <Categories categories={categories} onClick={onClickCategories} />
           <div className={styles.cards}>
             {products.map((p) => {
                 return (<Card
