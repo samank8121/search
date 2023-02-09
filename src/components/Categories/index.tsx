@@ -2,11 +2,10 @@ import React, { FC, useEffect, useState } from 'react';
 import clsx from 'clsx';
 
 export interface Props {
-  categories: string[];
-  onClick: (category: string) => void;
+  categories: string[];  
 }
 
-export const Categories: FC<Props> = ({ categories, onClick }) => {
+export const Categories: FC<Props> = ({ categories }) => {
   const [active, setActive] = useState('');
 
   useEffect(() => {
@@ -15,7 +14,6 @@ export const Categories: FC<Props> = ({ categories, onClick }) => {
 
   const filterClicked = (filter: string) => {
     setActive(filter);
-    onClick(filter);
   };
 
   return (

@@ -1,5 +1,5 @@
 export interface ProductType {
-    imgSrc:string;
+    imgSrc?:string;
     name: string;
     brand: string;
     price: number;

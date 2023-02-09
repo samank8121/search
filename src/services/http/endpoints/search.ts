@@ -6,14 +6,16 @@ class SearchProvider extends BaseAPI {
     super();
   }
 
-  public getCategories(
+  public getSearches(
     slug: string,
-    query?: string
+    q?: any
   ): Promise<AxiosResponse<any[]>> {
-    return this.httpService.post(`${slug}`, {
-      params: {
-        q: query,
-      },
+    const params = {
+      slug:slug,
+      query:q,
+    };
+    
+    return this.httpService.post('slug/', params, {
       headers: {
         Accept: 'application/json;',
       },

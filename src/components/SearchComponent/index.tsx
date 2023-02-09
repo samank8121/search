@@ -18,7 +18,7 @@ export const SearchComponent: FC<Props> = ({
 }) => {
   const [searchCriteria, setSearchCriteria] = useState('');
   const [hasFocus, setHasFocus] = useState(false);
-  
+
   return (
     <div className={clsx('flex flex-col', { 'w-full': hasFocus })}>
       <div className='search-component'>
@@ -36,7 +36,11 @@ export const SearchComponent: FC<Props> = ({
           }}
         />
         <Image
-          onClick={(e) => onClick(searchCriteria)}
+          onClick={(e) => {
+            onClick(searchCriteria);
+            setHasFocus(false);
+            onBlur();
+          }}
           className='search-icon'
           src='/Search.svg'
           alt='search'
@@ -51,6 +55,7 @@ export const SearchComponent: FC<Props> = ({
             <Image
               onClick={(e) => {
                 setSearchCriteria('');
+                onClick('');
                 setHasFocus(false);
                 onBlur();
               }}

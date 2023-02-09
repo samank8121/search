@@ -11,10 +11,9 @@ import type { AxiosInstance } from 'axios';
 abstract class BaseAPI {
   protected httpService: AxiosInstance;
 
-  protected constructor(group = '', timeout = 50000, baseURL = '/') {
-   
+  protected constructor(timeout = 50000) {
     this.httpService = axios.create({
-      baseURL: `${process.env.NEXT_PUBLIC_API_URL}${baseURL}${group}`,
+      baseURL: `${process.env.NEXT_PUBLIC_API_URL}`,
       timeout,
     });
   }
