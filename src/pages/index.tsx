@@ -6,6 +6,7 @@ import { Categories } from '@/components/Categories';
 import { GetStaticPropsContext } from 'next';
 import { ProductType } from '@/types/ProductType';
 import { Card } from '@/components/Card';
+import SearchService from '@/services/http/endpoints/search';
 
 const categories = ['Trendy foods', 'Bread', 'Milk', 'Egg'];
 
@@ -14,12 +15,19 @@ interface Props {
 }
 const Home: React.FC<Props> = ({ products }) => {
   const [show, setShow] = useState(true);
+  const [recentSearches,setRecentSearches]=useState([{text:'coca'}]);
 
   const onClickCategories = (category: string) => {
     //Call Api
   };
   const onClickSearch = (searchCriteria: string) => {
-    //Call Api
+    console.log(searchCriteria);
+    // SearchService.getRecentSearch(searchCriteria)
+    // .then((response) => {
+    //   console.log(response);
+    //   //setRecentSearches(response.data)
+    // })
+    // .catch((error) => console.log(error));
   };
 
   return (
@@ -44,7 +52,7 @@ const Home: React.FC<Props> = ({ products }) => {
               onBlur={() => {
                 setShow(true);
               }}
-              recentSearches={['coca','coooca']}
+              recentSearches={recentSearches}
             />
           </div>
           {show && (
@@ -75,6 +83,13 @@ const Home: React.FC<Props> = ({ products }) => {
 };
 
 export default Home;
+
+// async function getData(slug: string) {
+//   const result = await SearchService.getCategories(slug)
+//     .then((response) => response)
+//     .catch((error) => error);
+//   return result;
+// }
 
 export function getStaticProps({ locale }: GetStaticPropsContext): {
   props: { products: ProductType[] };

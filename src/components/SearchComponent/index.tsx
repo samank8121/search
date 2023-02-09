@@ -1,12 +1,13 @@
 import React, { FC, useState } from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
+import { RecentSearchType } from '@/types/RecentSearchType';
 
 interface Props {
   onClick: (filter: string) => void;
   onFocus: () => void;
   onBlur: () => void;
-  recentSearches?: string[];
+  recentSearches?: RecentSearchType[];
 }
 
 export const SearchComponent: FC<Props> = ({
@@ -17,6 +18,7 @@ export const SearchComponent: FC<Props> = ({
 }) => {
   const [searchCriteria, setSearchCriteria] = useState('');
   const [hasFocus, setHasFocus] = useState(false);
+  
   return (
     <div className={clsx('flex flex-col', { 'w-full': hasFocus })}>
       <div className='search-component'>
@@ -47,7 +49,11 @@ export const SearchComponent: FC<Props> = ({
           <div className='flex justify-between'>
             <span>Popular searches</span>
             <Image
-              onClick={(e) => { setHasFocus(false); onBlur()}}
+              onClick={(e) => {
+                setSearchCriteria('');
+                setHasFocus(false);
+                onBlur();
+              }}
               className=''
               src='/Close.svg'
               alt='search'
@@ -59,10 +65,16 @@ export const SearchComponent: FC<Props> = ({
           {recentSearches &&
             recentSearches.map((rs) => {
               return (
-                <div className='my-10 flex justify-between' key={rs}>
-                  <span>{rs}</span>
+                <div
+                  className='my-10 flex justify-between'
+                  key={rs.text}
+                  onClick={(e) => {
+                    setSearchCriteria(rs.text);
+                    onClick(rs.text);
+                  }}
+                >
+                  <span>{rs.text}</span>
                   <Image
-                    onClick={(e) => onClick(searchCriteria)}
                     src='/Search.svg'
                     alt='search'
                     width={20}

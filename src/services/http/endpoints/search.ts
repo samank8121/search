@@ -19,6 +19,15 @@ class SearchProvider extends BaseAPI {
       },
     });
   }
+  public getRecentSearch(
+    query?: string
+  ): Promise<AxiosResponse<any[]>> {
+    return this.httpService.get(`autocomplete?query=${query}`, {      
+      headers: {
+        Accept: 'application/json;',
+      },
+    });
+  }
 }
 
 const SearchService = new SearchProvider();
